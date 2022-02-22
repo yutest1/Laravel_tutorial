@@ -13,6 +13,25 @@
           <form id="filter" method="get">
             <div class="modal-body">
               <!-- TODO:検索フォーム -->
+              <form method="GET" action="{{ route('index') }}" id="myform">
+               <div class="form-group">
+                <label>名前</label>
+                  <input type="text" name="name" class="form-control">
+                    </div>
+                    <div class="form-group">
+              <label for="sex">性別</label>
+                <select id="sex" name="sex" class="form-control">
+                <option value="">---------</option>
+                <option value="1">男性</option>
+                <option value="2">女性</option>
+                <option value="3">指定無し</option>
+                </select>
+            </div>
+              <div class="form-group">
+                <label>備考</label>
+                  <textarea name="memo" class="form-control"></textarea>
+              </div>
+              </form>
             </div>
           </form>
           <div class="modal-footer">
@@ -36,6 +55,7 @@
     <div class="row" >
       <div class="col-12">
         <!-- TODO:ページネーション -->
+        {{ $items->links() }}
       </div>
     </div>
 
@@ -71,9 +91,9 @@
                     <!-- TODO:リンク先追加 -->
                     <a class="btn btn-outline-secondary " href="{{ route('show', ['id' => $item->id]) }}">詳細</a>
                     <!-- TODO:リンク先追加 -->
-                    <a class="btn btn-outline-secondary " href="">編集</a>
+                    <a class="btn btn-outline-secondary " href="{{ route('edit', ['id' => $item->id]) }}">編集</a>
                     <!-- TODO:リンク先追加 -->
-                    <a class="btn btn-outline-secondary " href="">削除</a>
+                    <a class="btn btn-outline-secondary " href="{{ route('delete', ['item' => $item]) }}">削除</a>
                   </div>
                 </div>
               </div>
@@ -82,14 +102,6 @@
         </ul>
       </div>
     </div>
-    <div class="row" >
-      <div class="col-12">
-        <div class="float-right">
-          <!-- TODO:リンク先追加 -->
-          <a class="btn btn-outline-secondary" href="">新規</a>
-          <a class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" href="#">検索</a>
-        </div>
-      </div>
-    </div>
+    
   </div>
 @endsection
